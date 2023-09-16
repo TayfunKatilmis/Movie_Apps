@@ -9,4 +9,4 @@ const fetchDataFromServer = function(url, callback, optionalParam) {
         callback(data, optionalParam));    
 }
 
-export{ imageBaseUrl, apiKey, fetchDataFromServer};
+export{ imageBaseUrl, apiKey, fetchDataFromServer };
