@@ -1,11 +1,11 @@
 'use strict';
 
-import { apiKey, fetchDataFromServer } from "./api";
+import { apiKey, fetchDataFromServer } from "./api.js";
 
 export function sidebar() {
     const genreList = {};
 
-    fetchDataFromServer('https://api.themoviedb.org/3/genre/movie/list?api_key=f2c59e0b1b937fc21c55201ff6e98699', function ({ genres }) {
+    fetchDataFromServer(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`, function ({ genres }) {
         for (const { id, name } of genres) {
             genreList[id] = name;
         }
@@ -15,7 +15,7 @@ export function sidebar() {
     const sidebarInner = document.createElement("div");
     sidebarInner.classList.add("sidebar-inner");
 
-    sidebarInner.innerHTML = html`
+    sidebarInner.innerHTML = `
     <div class="sidebar-list">
 
                 <p class="title"> Genre </p>
@@ -48,7 +48,7 @@ export function sidebar() {
 
                 link.textContent = genreName;
 
-                sidebarInner.querySelectorAll("sidebar-list")[0]
+                sidebarInner.querySelectorAll(".sidebar-list")[0]
                 .appendChild(link);
 
             }
