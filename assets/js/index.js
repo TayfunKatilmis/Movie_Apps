@@ -2,12 +2,29 @@
 
 import { sidebar } from "./sidebar.js";
 import { apiKey, imageBaseUrl, fetchDataFromServer } from "./api.js";
-
+import { createMovieCard } from "./movie-card.js"
 
 const pageContent = document.querySelector("[page-content]");
 
 
 sidebar();
+
+const homePageSections = [ {
+    title: "Upcoming Movies",
+    path: "/movie/upcoming"
+},
+{
+    title: "Today\'s Trending Movies",
+    path: "/trending/movie/week",
+    
+},
+{
+    title: "Top Rated Movies",
+    path: "/movie/top_rated",
+    
+}
+]
+
 
 
 const genreList = {
@@ -43,44 +60,7 @@ const heroBanner = function({ results: movieList }) {
     banner.ariaLabel = "Popular Movies";
 
     banner.innerHTML = `
-    <div class="banner-slider">
-
-
-    <div class="slider-item active" slider-item>
-        <img src="./assets/images/slider-banner.jpg" alt="Puss
-        in Boots: The Last Wish" class="img-cover"
-        loading="eager">
-
-        <div class="banner-content">
-            <h2 class="heading">
-                Puss in Boots: The Last Wish
-            </h2>
-            <div class="meta-list">
-                <div class="meta-item">2022</div>
-
-                <div class="meta-item card-badge">7.5</div>
-                <p class="genre">Animation, Action, Adventure</p>
-
-                <p class="banner-text">Puss in Boots discovers 
-                    that his passion for adventure has taken
-                    its toll: He has burned through eight
-                    of his nine lives, leaving him with only one
-                    life left. Puss sets out on an epic journey
-                    to find the mythical Last Wish and restore 
-                    his nine lives.
-                </p>
-
-                <a href="./detail.html" class="btn">
-                    <img src="./assets/images/play_circle.png" width="24" 
-                    height="24" aria-hidden="true" alt="">
-
-                    <span class="span">Watch Now</span>
-
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+    <div class="banner-slider"></div>
 
 <div class="slider-control">
     <div class="control-inner">
@@ -154,5 +134,59 @@ const heroBanner = function({ results: movieList }) {
     }
 
     pageContent.appendChild(banner);
+
+    addHeroSlide();
+
+    for (const {title, path } of homePageSections) {
+        fetchDataFromServer(`https://api.themoviedb.org/3${path}?api_key=${apiKey}&page=1`, createMovieList, title);
+    }
+}
+
+
+const addHeroSlide = function () {
+    const sliderItems = document.querySelectorAll("[slider-item]");
+    const sliderControls = document.querySelectorAll("[slider-control]");
+
+    let lastSliderItem = sliderItems[0];
+    let lastSliderControl = sliderControls[0];
+
+    lastSliderItem.classList.add("active");
+    lastSliderControl.classList.add("active");
+
+    const sliderStart = function () {
+        lastSliderItem.classList.remove("active");
+        lastSliderControl.classList.remove("active");
+
+        sliderItems[Number(this.getAttribute("slider-control"))].
+        classList.add("active");
+        this.classList.add("active");
+
+        lastSliderItem = sliderItems[Number(this.getAttribute("slider-control"))];
+        lastSliderControl = this;
+    }
+}
+
+const createMovieList = function({ results: movieList }, title) {
+    const movieListElem = document.createElement("section");
+    movieListElem.classList.add("movie-list");
+    movieListElem.ariaLabel = `${title}`;
+
+    movieListElem.innerHTML = `
+    <div class="title-wrapper">
+                <h3 class="title-large">${title}</h3>
+            </div>
+            <div class="slider-list">
+                <div class="slider-inner">
+                </div>
+            </div>
+    `;
+
+    for(const movie of movieList) {
+        const movieCard = createMovieCard(movie);
+
+        movieListElem.querySelector(".slider-inner").appendChild(movieCard);
+    }
+
+    pageContent.appendChild(movieListElem);
 
 }
