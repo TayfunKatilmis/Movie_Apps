@@ -2,7 +2,7 @@
 
 import { sidebar } from "./sidebar.js";
 import { apiKey, imageBaseUrl, fetchDataFromServer } from "./api.js";
-import { createMovieCard } from "./movie-card.js"
+import { createMovieCard } from "./movie-card.js";
 
 const pageContent = document.querySelector("[page-content]");
 
@@ -14,7 +14,7 @@ const homePageSections = [ {
     path: "/movie/upcoming"
 },
 {
-    title: "Today\'s Trending Movies",
+    title: "Weekly Trending Movies",
     path: "/trending/movie/week",
     
 },
@@ -105,7 +105,7 @@ const heroBanner = function({ results: movieList }) {
                 <p class="banner-text">${overview}
                 </p>
 
-                <a href="./detail.html" class="btn">
+                <a href="./detail.html" class="btn" onclick="getMovieDetail(${id})">
                     <img src="./assets/images/play_circle.png" width="24" 
                     height="24" aria-hidden="true" alt="">
 
@@ -157,13 +157,14 @@ const addHeroSlide = function () {
         lastSliderItem.classList.remove("active");
         lastSliderControl.classList.remove("active");
 
-        sliderItems[Number(this.getAttribute("slider-control"))].
-        classList.add("active");
+        sliderItems[Number(this.getAttribute("slider-control"))].classList.add("active");
         this.classList.add("active");
 
         lastSliderItem = sliderItems[Number(this.getAttribute("slider-control"))];
         lastSliderControl = this;
     }
+
+    addEventOnElements(sliderControls, "click", sliderStart);
 }
 
 const createMovieList = function({ results: movieList }, title) {
