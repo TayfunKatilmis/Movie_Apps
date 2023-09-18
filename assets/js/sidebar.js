@@ -23,11 +23,9 @@ export function sidebar() {
             <div class="sidebar-list">
                 <p class="title"> Language </p>
                     <a href="./movie-list.html" 
-                    menu-close class="sidebar-link">English</a>
+                    menu-close class="sidebar-link" onclick="getMovieList("with_original_language=en", "English")">English</a>
                     <a href="./movie-list.html" 
-                    menu-close class="sidebar-link">Hindi</a>
-                    <a href="./movie-list.html" 
-                    menu-close class="sidebar-link">Bengali</a>
+                    menu-close class="sidebar-link" onclick="getMovieList("with_original_language=tr, "Turkish")">Turkish</a>
             </div>
 
             <div class="sidebar-footer">
@@ -35,7 +33,8 @@ export function sidebar() {
                     Copyright 2023
                 </p>
                 <img src="./assets/images/tmdb-logo.png" width="130" height="17" alt="the movie database logo">
-            </div>`;
+            </div>
+            `;
     
     const genreLink = function() {
         for(const [genreId, genreName] of Object.entries
@@ -45,6 +44,7 @@ export function sidebar() {
                 link.classList.add("sidebar-link");
                 link.setAttribute("href", "./movie-list.html");
                 link.setAttribute("menu-close", "");
+                link.setAttribute("onclick", `getMovieList("with_genres=${genreId}", "${genreName}")`);
 
                 link.textContent = genreName;
 
