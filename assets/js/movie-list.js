@@ -2,6 +2,7 @@
 
 import { apiKey, fetchDataFromServer } from "./api.js";
 import { createMovieCard } from "./movie-card.js";
+import { search } from "./search.js";
 import { sidebar } from "./sidebar.js";
 
 
@@ -73,3 +74,6 @@ total_pages }) {
     })
 
 })
+
+
+search();
