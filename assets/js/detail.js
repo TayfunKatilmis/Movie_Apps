@@ -150,8 +150,6 @@ fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api
     fetchDataFromServer(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${apiKey}&page=1`, addSuggestedMovies);
 });
 
-
-
 const addSuggestedMovies = function({ results: movieList }, title) {
     const movieListElem = document.createElement("section");
     movieListElem.classList.add("movie-list");

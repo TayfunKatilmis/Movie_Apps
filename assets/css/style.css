@@ -1,18 +1,3 @@
-/*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
-
-/**
- * copyright 2023 codewithsadee
- */
-
-
-
-
-
-/*-----------------------------------*\
-  #CUSTOM PROPERTY
-\*-----------------------------------*/
 :root {
   --background: hsla(220, 17%, 7%, 1);
   --banner-background: hsla(250, 6%, 20%, 1);
@@ -54,12 +39,6 @@
   --transition-long: 500ms ease;
 }
 
-
-
-
-/*-----------------------------------*\
-  #RESET
-\*-----------------------------------*/
 *,
 *::before,
 *,::after {
@@ -131,10 +110,6 @@ body {
   border-radius: var(--radius-8);
 }
 
-
-/*-----------------------------------*\
-  #REUSED STYLE
-\*-----------------------------------*/
 
 .search-wrapper::before,
 .load-more::before {
@@ -321,12 +296,6 @@ margin-block-end: -16px;
   pointer-events: none;
 }
 
-
-
-/*-----------------------------------*\
-  #HEADER
-\*-----------------------------------*/
-
 .search-box {display: none;}
 
 .header {
@@ -416,10 +385,6 @@ margin-block-end: -16px;
 }
 
 .search-wrapper:focus-within .leading-icon { opacity: 0;}
-
-/*-----------------------------------*\
-  #SIDEBAR
-\*-----------------------------------*/
 
 .sidebar {
   position: absolute;
@@ -511,12 +476,6 @@ margin-block-end: -16px;
   pointer-events: all;
 }
 
-
-
-/*-----------------------------------*\
-  #HOME PAGE
-\*-----------------------------------*/
-
 .container {
   position: relative;
   background-color: var(--surface);
@@ -530,10 +489,6 @@ margin-block-end: -16px;
 
 
 
-
-/**
-*Banner
-*/
 .banner {
   position: relative;
   height: 700px;
@@ -672,11 +627,6 @@ margin-block-end: -16px;
   inset: 0;
 }
 
-
-
-/*-----------------------------------*\
-  #DETAIL PAGE
-\*-----------------------------------*/
 .backdrop-image {
   position: absolute;
   top: 0;
@@ -730,12 +680,6 @@ margin-block-end: -16px;
   min-width: 112px;
 }
 
-
-
-/*-----------------------------------*\
-  #MOVIE LIST PAGE
-\*-----------------------------------*/
-
 .genre-list .title-wrapper {
   margin-block-end: 56px;
 }
@@ -750,10 +694,6 @@ margin-block-end: -16px;
 :is(.genre-list, .search-modal) :is(.movie-card, .card-banner) { 
   width: 100%;
  }
-
-/*-----------------------------------*\
-  #SEARCH MODAL
-\*-----------------------------------*/
 
 .search-modal {
   position: fixed;
@@ -775,13 +715,6 @@ margin-block-end: -16px;
   font-weight: var(--weight-bold);
   margin-block-end: 8px;
 }
-
-
-
-/*-----------------------------------*\
-  #MEDIA QUERIES
-\*-----------------------------------*/
-
 
 @media (min-width: 575px) {
 
